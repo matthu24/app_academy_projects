@@ -75,11 +75,33 @@ class Board
     self[from_pos],self[to_pos] = self[to_pos],self[from_pos]
   end
 
-  def checkmate?
+  def checkmate?(color)
 
   end
 
-  def find_king(color)
+  #return an array of all pieces of that color
+  def pieces(color)
+    @grid.flatten.select{|piece| piece.color == color}
+  end
 
+  def in_check?(color)
+    king = find_king(color)
+    king_position = king.position
+    enemy_color = (color == :white ? :black : :white)
+    enemy_pieces = pieces(enemy_color)
+    enemy_pieces.each do |piece|
+      return true if piece.moves.include?(king_position)
+    end
+    false 
+  end
+
+
+  def find_king(color)
+    @grid.each_with_index do |row,row_idx|
+      row.each_with_index do |square,col_idx|
+        piece = self[[row_idx,col_idx]]
+        return piece if piece.is_a?(King) && piece.color == color
+      end
+    end
   end
 end
