@@ -1,8 +1,8 @@
 require_relative 'piece'
 
-class Bishop < Piece
+class Knight < Piece
   def symbol
-
+    '♘'.colorize(color)
   end
 
 protected

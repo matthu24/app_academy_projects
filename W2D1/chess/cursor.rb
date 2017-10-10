@@ -50,21 +50,21 @@ class Cursor
     STDIN.echo = false # stops the console from printing return values
 
     STDIN.raw! # in raw mode data is given as is to the program--the system
-                 # doesn't preprocess special characters such as control-c
+    # doesn't preprocess special characters such as control-c
 
     input = STDIN.getc.chr # STDIN.getc reads a one-character string as a
-                             # numeric keycode. chr returns a string of the
-                             # character represented by the keycode.
-                             # (e.g. 65.chr => "A")
+    # numeric keycode. chr returns a string of the
+    # character represented by the keycode.
+    # (e.g. 65.chr => "A")
 
     if input == "\e" then
       input << STDIN.read_nonblock(3) rescue nil # read_nonblock(maxlen) reads
-                                                   # at most maxlen bytes from a
-                                                   # data stream; it's nonblocking,
-                                                   # meaning the method executes
-                                                   # asynchronously; it raises an
-                                                   # error if no data is available,
-                                                   # hence the need for rescue
+      # at most maxlen bytes from a
+      # data stream; it's nonblocking,
+      # meaning the method executes
+      # asynchronously; it raises an
+      # error if no data is available,
+      # hence the need for rescue
 
       input << STDIN.read_nonblock(2) rescue nil
     end
@@ -76,8 +76,25 @@ class Cursor
   end
 
   def handle_key(key)
+    case key
+      # select
+    when :return, :space
+      return @cursor_pos
+    when :left, :right, :up, :down
+      diff = MOVES[key]
+      update_pos(diff)
+      return nil
+    when :ctrl_c
+      Process.exit
+    end
   end
 
   def update_pos(diff)
+    x,y = @cursor_pos
+    new_x,new_y = x+diff[0], y+diff[1]
+    if @board.in_bounds?(new_x,new_y)
+      @cursor_pos = [new_x,new_y]
+    end
+    return @cursor_pos
   end
 end
