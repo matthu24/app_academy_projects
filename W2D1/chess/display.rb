@@ -15,12 +15,12 @@ class Display
 
   def render
     @board.grid.each_with_index do |row,row_idx|
-      row = ""
       row.each_with_index do |col,col_idx|
-
-        puts col.symbol
+        bgc = ((row_idx + col_idx)%2 == 0) ? :white : :grey
+        print "#{col.symbol + " "}".colorize(background: bgc)
         #background: :red, color: :blue
       end
+      puts " "
     end
 
   end

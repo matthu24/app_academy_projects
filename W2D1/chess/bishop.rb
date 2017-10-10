@@ -2,7 +2,7 @@ require_relative 'piece'
 
 class Bishop < Piece
   def symbol
-    '♗'.colorize(color)
+      '♗'.colorize(color)
   end
 
 protected
