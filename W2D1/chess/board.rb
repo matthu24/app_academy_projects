@@ -10,10 +10,11 @@ require_relative 'null_piece.rb'
 
 class Board
   attr_accessor :grid
-  def initialize
+  def initialize(fill = true)
     @grid = Array.new(8){Array.new(8)}
-    fill_board
-
+    if fill
+      fill_board
+    end
   end
 
   def [](pos)
@@ -54,8 +55,21 @@ class Board
 
   end
 
-  def dup
+  def deep_dup
+    board_dup = Board.new(false)
+    @grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        piece_pos = piece.pos
+        if piece.is_a?(NullPiece)
+          board_dup[[row_idx,col_idx]] = NullPiece.instance
+        else
+          piece_color = piece.color
+          board_dup[piece_pos] = piece.class.new(piece_pos, board_dup, piece_color)
+        end
+      end
+    end
 
+    board_dup
   end
 
   def move_piece(color,from_pos,to_pos)
@@ -76,7 +90,7 @@ class Board
   end
 
   def checkmate?(color)
-
+    in_check?(color) && pieces_valid_moves(color).empty?
   end
 
   #return an array of all pieces of that color
@@ -84,17 +98,25 @@ class Board
     @grid.flatten.select{|piece| piece.color == color}
   end
 
+  def pieces_valid_moves(color)
+    all_moves = []
+    pieces = pieces(color)
+    pieces.each do |piece|
+      all_moves.concat(piece.valid_moves)
+    end
+    all_moves
+  end
+
   def in_check?(color)
     king = find_king(color)
-    king_position = king.position
+    king_position = king.pos
     enemy_color = (color == :white ? :black : :white)
     enemy_pieces = pieces(enemy_color)
     enemy_pieces.each do |piece|
       return true if piece.moves.include?(king_position)
     end
-    false 
+    false
   end
-
 
   def find_king(color)
     @grid.each_with_index do |row,row_idx|

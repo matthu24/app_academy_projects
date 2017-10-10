@@ -3,8 +3,8 @@ require 'singleton'
 class NullPiece < Piece
   include Singleton
 
-  def initialize
-  end
+  # def initialize(pos,board,color)
+  # end
 
   def symbol
     " "

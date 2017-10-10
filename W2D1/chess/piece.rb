@@ -1,10 +1,10 @@
-
+#require 'byebug'
 
 class Piece
   attr_accessor :pos
   attr_reader :color, :board
 
-  def initialize(pos,board,color = nil)
+  def initialize(pos = nil,board = nil,color = nil)
     @pos = pos
     @color = color
     @board = board
@@ -22,13 +22,18 @@ class Piece
 
   end
 
+  def move_into_check?(end_pos)
+    board_dup = @board.deep_dup
+    start_pos = @pos
+    #debugger
+    board_dup.move_piece!(start_pos, end_pos)
+    board_dup.in_check?(@color)
+  end
+
   def valid_moves
-    moves.select{|move| !move_into_check(move)}
+    moves.reject { |move| move_into_check?(move) }
   end
 
-  private
-  def move_into_check(to_pos)
 
-  end
 
 end
