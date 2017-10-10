@@ -3,7 +3,7 @@ module SlidePieces
   def moves
     moves = []
     move_dirs.each do |move|
-      moves << grow_unblocked_moves_in_dir(move[0],move[1])
+      moves.concat(grow_unblocked_moves_in_dir(move[0],move[1]))
     end
     moves
   end

@@ -1,6 +1,8 @@
 require_relative 'piece'
+require_relative 'step_pieces.rb'
 
 class Rook < Piece
+  include StepPieces
   def symbol
     '♖'.colorize(color)
   end
