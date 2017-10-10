@@ -23,7 +23,7 @@ class Piece
   end
 
   def valid_moves
-
+    moves.select{|move| !move_into_check(move)}
   end
 
   private

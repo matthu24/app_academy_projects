@@ -14,16 +14,33 @@ class Display
 
 
   def render
+    cursor_pos = @cursor.cursor_pos
+
     @board.grid.each_with_index do |row,row_idx|
       row.each_with_index do |col,col_idx|
         bgc = ((row_idx + col_idx)%2 == 0) ? :white : :grey
+        if [row_idx, col_idx] == cursor_pos
+          bgc = :yellow
+        end
         print "#{col.symbol + " "}".colorize(background: bgc)
         #background: :red, color: :blue
       end
       puts " "
     end
-
+    return
   end
+
+  def move_cursor
+
+    render
+    until false
+      @cursor.get_input
+      system("clear")
+      render
+    end
+  end
+
+
 
 
 
