@@ -36,7 +36,7 @@ class Board
 
     pieces.each_with_index do |piece,col|
       self[[0,col]] = Object.const_get(piece).new([0,col],self,:black)
-      self[[7,col]]= Object.const_get(piece).new([7,col],self,:white)
+      self[[7,col]]= Object.const_get(piece).new([7,col],self,:red)
     end
 
     # row 2 to 5
@@ -49,7 +49,7 @@ class Board
     #row 1 and 6
     (0..7).each do |col|
       self[[1,col]] = Pawn.new([1,col],self,:black)
-      self[[6,col]] = Pawn.new([6,col],self,:white)
+      self[[6,col]] = Pawn.new([6,col],self,:red)
     end
 
   end
