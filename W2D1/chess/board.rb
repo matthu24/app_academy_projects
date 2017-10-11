@@ -7,6 +7,7 @@ require_relative 'king.rb'
 require_relative 'pawn.rb'
 require_relative 'null_piece.rb'
 
+require 'byebug'
 
 class Board
   attr_accessor :grid
@@ -72,13 +73,12 @@ class Board
     board_dup
   end
 
-  def move_piece(color,from_pos,to_pos)
+  # def move_piece(color,from_pos,to_pos)
+  def move_piece(from_pos,to_pos)
     if self[from_pos].is_a?(NullPiece)
       raise StandardError.new "There is no piece here"
     elsif !self[from_pos].valid_moves.include?(to_pos)
       raise StandardError.new "Not a valid move"
-
-
     end
 
     move_piece!(from_pos,to_pos)
@@ -86,6 +86,8 @@ class Board
   end
 
   def move_piece!(from_pos,to_pos)
+    puts "#{from_pos}#{to_pos}"
+
     self[from_pos],self[to_pos] = self[to_pos],self[from_pos]
   end
 
@@ -95,7 +97,19 @@ class Board
 
   #return an array of all pieces of that color
   def pieces(color)
-    @grid.flatten.select{|piece| piece.color == color}
+    # @grid.flatten.select{|piece| piece.color == color}
+    #debugger
+    @grid.flatten.select do |piece|
+      # puts "#{piece.pos}#{piece.color}#{piece.class}"
+
+      false if piece.is_a?(NullPiece)
+      unless piece.nil?
+        piece.color == color
+      end
+    end
+
+
+
   end
 
   def pieces_valid_moves(color)
@@ -108,22 +122,32 @@ class Board
   end
 
   def in_check?(color)
+
     king = find_king(color)
     king_position = king.pos
-    enemy_color = (color == :white ? :black : :white)
+    enemy_color = (color == :red ? :black : :red)
     enemy_pieces = pieces(enemy_color)
     enemy_pieces.each do |piece|
       return true if piece.moves.include?(king_position)
     end
+
     false
   end
 
   def find_king(color)
-    @grid.each_with_index do |row,row_idx|
-      row.each_with_index do |square,col_idx|
-        piece = self[[row_idx,col_idx]]
-        return piece if piece.is_a?(King) && piece.color == color
-      end
-    end
+    king = pieces(color).select{|piece| piece.is_a?(King)}[0]
+    # puts "king #{color}"
+    # p king
+    # puts "king #{color}"
+    # return king
+    # r=nil
+    # @grid.each_with_index do |row, row_idx|
+    #   row.each_with_index do |square, col_idx|
+    #     # debugger
+    #     return square if (square.is_a?(King) && square.color == colour)
+    #   end
+    # end
+    # puts "ever here!!!!!"
+    # r
   end
 end

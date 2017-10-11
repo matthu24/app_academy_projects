@@ -33,11 +33,14 @@ class Display
   def move_cursor
 
     render
-    until false
-      @cursor.get_input
+    input = nil
+    while input == nil
+      input = @cursor.get_input
       system("clear")
       render
     end
+    #when we exit loop, input will be the position of the cursor
+    return input
   end
 
 
