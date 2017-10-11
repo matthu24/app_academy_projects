@@ -108,8 +108,9 @@ class Board
       end
     end
 
-
-
+  #return an array of all pieces of that color
+  def pieces(color)
+    @grid.flatten.select{|piece| piece.color == color}
   end
 
   def pieces_valid_moves(color)
