@@ -30,4 +30,63 @@ class Array
     transposed
   end
 
+  def stock_picker
+    most_profitable = nil
+    dates = []
+    self.each_with_index do |price,buy_day|
+      (buy_day+1..self.length-1).each do |sell_day|
+        diff = self[sell_day] - self[buy_day]
+        if most_profitable.nil? || diff > most_profitable
+          dates = [buy_day,sell_day]
+          most_profitable = diff
+        end
+      end
+    end
+    dates
+  end
+
+end
+
+class TowersOfHanoiGame
+  attr_accessor :board
+  def initialize
+    @board = [[3, 2, 1], [], []]
+  end
+
+  def move(from,to)
+
+
+    raise "Empty peg!" if @board[from].empty?
+    # debugger
+    if !@board[to].empty? && @board[to].last < @board[from].last
+      raise "Invalid move!"
+    end
+    @board[to] << @board[from].pop
+
+
+  end
+
+  def win?
+    # return false if !@board[0].empty?
+    return true if (@board[1].length == 3) || (@board[2].length == 3)
+    false
+  end
+
+  def get_move
+    puts "From whence do you come?"
+    from = gets.chomp
+
+    puts "To where are you going?"
+    to = gets.chomp
+    return [from,to]
+  end
+
+
+
+
+
+
+
+
+
 end
