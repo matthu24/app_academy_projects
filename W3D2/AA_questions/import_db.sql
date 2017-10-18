@@ -59,21 +59,25 @@ INSERT INTO
   users (fname, lname)
 VALUES
   ('Matthew', 'Hu'),
-  ('Vickie', 'Chen');
+  ('Vickie', 'Chen'),
+  ('Bob','Johnson');
 
 INSERT INTO
   questions (title, body, user_id)
 VALUES
   ('Random', 'Random question', (SELECT id FROM users WHERE fname = 'Matthew' AND lname = 'Hu')),
-  ('Random2', 'Vickie''s question', (SELECT id FROM users WHERE fname = 'Vickie' AND lname = 'Chen'));
+  ('Random2', 'Vickie''s question', (SELECT id FROM users WHERE fname = 'Vickie' AND lname = 'Chen')),
+  ('Random3', 'Another random question', (SELECT id FROM users WHERE fname = 'Vickie' AND lname = 'Chen'));
 
 INSERT INTO
   question_follows (question_id, follower_id)
 VALUES
   (1, 1),
+  (1, 3),
   (2, 2),
   (1, 2),
-  (2, 1);
+  (2, 1),
+  (3, 2);
 
 INSERT INTO
   replies (question_id, parent_id, user_id, body)
