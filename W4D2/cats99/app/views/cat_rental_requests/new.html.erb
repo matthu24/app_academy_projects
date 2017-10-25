@@ -1,0 +1,20 @@
+<form action="<%= cat_rental_requests_url %>" method="post">
+
+<h1> Cat rental requests </h1>
+
+
+<label for="cat_id">Cat Id:</label>
+ <select name="CatRentalRequest[cat_id]" >
+
+<% @cats.each do |cat| %>
+
+   <option value="<%= cat.id %>"> <%= cat.id %>  </option>
+
+<% end %>
+
+ </select>
+ <br>
+
+
+
+<input type="submit" value="which cat">

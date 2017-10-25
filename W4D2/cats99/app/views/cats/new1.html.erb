@@ -1,0 +1,42 @@
+<form action="<%= cats_url %>" method="post">
+
+
+
+  <label for="name">Name:</label>
+  <input id = "name" type="text" name="cat[name]">
+
+  <br>
+
+  <label for="sex">Sex:</label>
+  <input type="radio" name="cat[sex]" value="M" checked> Male
+  <input type="radio" name="cat[sex]" value="F"> Female
+
+  <br>
+
+
+<label for="color">Color:</label>
+ <select>
+   <option disabled selected > Please Select </option>
+   <option value="Brown" name = "cat[color]">Brown</option>
+   <option value="Black" name = "cat[color]">Black</option>
+ </select>
+
+ <br>
+
+<label for="birth_date">Cat's Birthday:</label>
+<input id="date" type="date" name = "cat[birth_date]">
+
+<br>
+
+
+<label for="description"> Cat Description: </label>
+<br>
+<textarea rows = "4" cols = "50" name = "cat[description]">
+enter the description for the caption
+</textarea>
+
+
+
+
+  <input type="submit" value="add cat">
+</form>
