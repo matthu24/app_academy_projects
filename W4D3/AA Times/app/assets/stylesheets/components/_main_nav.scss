@@ -1,0 +1,59 @@
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+.left-nav > ul,
+.right-nav > ul {
+  display: flex;
+}
+
+//all list items in left nav class
+.left-nav > ul > li {
+  cursor: pointer;
+  //just the horizontal margins
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: $sans-serif;
+  text-transform: uppercase;
+  background-color: $light-gray;
+  padding: 3px;
+}
+
+.right-nav > ul > li {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+
+.right-nav > ul > li {
+  position: relative;
+}
+button {
+  background-color: $blue;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: $sans-serif;
+  text-transform: uppercase;
+  color: white;
+  padding: 5px;
+
+
+}
+
+.left-nav > ul > li:hover,
+.right-nav > ul > li:last-of-type:hover {
+  background-color: $lightest-gray;
+}
+
+.left-nav span {
+
+}
+
+
+.right-nav i {
+
+}

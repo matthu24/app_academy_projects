@@ -1,0 +1,10 @@
+.sections-nav > ul{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  border-bottom: solid grey 1px;
+}
+
+.sections-nav > ul > li {
+  padding-right: 10px;
+}
