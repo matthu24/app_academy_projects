@@ -1,0 +1,12 @@
+<h1>Add a post</h1>
+  <form class="" action="<%= sub_posts_url(sub_id: params[:sub_id]) %>" method="post">
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label> Title<input type="text" name="post[title]" value=""></label>
+  <label> Url<input type="text" name="post[url]" value=""></label>
+    <label> Content<input type="text" name="post[content]" value=""></label>
+
+  <input type="submit" name="" value="Add Post">
+
+</form>
