@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Goal</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h1>Goals App</h1>
+    <% if signed_in? %>
+    I hope you're doing awesome <%= current_user.username %>
+
+
+    <br>
+    <%= button_to "Log Out", session_url, method: :delete%>
+    <% else  %>
+    <%= link_to "Sign Up", new_user_url %>
+    <br>
+    <%= link_to "Sign In", new_session_url %>
+    <% end %>
+
+    <% flash[:errors].try(:each) do |err| %>
+    <%= err %>
+    <% end %>
+
+
+
+    <%= yield %>
+    <footer>   </footer>
+  </body>
+</html>
