@@ -1,0 +1,9 @@
+.friend-grid li a{
+  height: 58px;
+  width: 58px;
+}
+
+.friend-grid > li {
+  float:left;
+  width:60px;
+}
