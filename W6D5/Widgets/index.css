@@ -1,0 +1,35 @@
+.clock-container{
+  font-family: 'Berkshire Swash', cursive;
+  display: flex;
+  justify-content: space-between;
+  border: 5px solid brown;
+  border-radius: 50%;
+  padding: 30px;
+  background: linear-gradient(-45deg, #000, #070);
+  background: radial-gradient(closest-side at 60% 55%,blue,red,green,black);
+  color: #fff;
+  transition-duration: 1s;
+  box-shadow: 10px 10px 10px #888888;
+  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.clock-container p {
+  margin-top: 100px;
+}
+
+.clock-container:hover {
+  transition-duration: 1s;
+  transform: translate(-10px, -10px);
+  box-shadow: 20px 20px 30px #888888;
+  transform: rotate(360deg);
+}
+
+.tabs {
+  font-family: 'Berkshire Swash', cursive;
+  display: flex;
+  justify-content: space-around;
+}

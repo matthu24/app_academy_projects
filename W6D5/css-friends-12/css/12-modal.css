@@ -1,0 +1,43 @@
+/* PHASE 12: Modal */
+
+.modal-screen {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-form {
+  position: absolute;
+  top: 100px;
+  left: 40%;
+  width: 360px;
+  z-index: 3;
+  padding: 50px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.modal-close {
+  font-weight: 700;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.modal-close:hover {
+  color: #f00;
+  cursor: pointer;
+}
+.modal {
+  display: none;
+}
+
+.is-open {
+  display: block;
+}
