@@ -4,7 +4,9 @@ class TodoForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { todo: {title: "",body:""} };
+    // this.state = { todo: {title: "",body:""} };
+    this.state = {title: "",body:""} ;
+
     this.updateTodo = this.updateTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.state.todo =
@@ -13,17 +15,21 @@ class TodoForm extends React.Component {
   updateTodo(e) {
     // const todo = {title: e.target.value};
     // console.log(todo);
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const todo =  {title: e.target.value };
+
     this.setState({todo});
+    console.log(this.state);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('this state todo:', this.state.todo);
+    // console.log('this state todo:', this.state.todo);
 
     this.props.receiveTodo(this.state.todo);
-    // this.setState({ todo: "" });
+    console.log(this.props);
+    //resets form
+    this.setState({ todo: "" });
   }
 
   render() {
