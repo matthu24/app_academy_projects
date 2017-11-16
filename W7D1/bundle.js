@@ -22303,6 +22303,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _utils = __webpack_require__(175);
+
+var _utils2 = _interopRequireDefault(_utils);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22320,7 +22324,7 @@ var TodoForm = function (_React$Component) {
     // this.state = { todo: {title: "",body:""} };
     var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
 
-    _this.state = { title: "", body: "" };
+    _this.state = { id: "", title: "", body: "" };
 
     _this.updateTodo = _this.updateTodo.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -22329,50 +22333,54 @@ var TodoForm = function (_React$Component) {
   }
 
   _createClass(TodoForm, [{
-    key: "updateTodo",
+    key: 'updateTodo',
     value: function updateTodo(e) {
       // const todo = {title: e.target.value};
       // console.log(todo);
       // console.log(e.target.value);
-      var todo = { title: e.target.value };
+      var id = (0, _utils2.default)();
+      var todo = { id: id, title: e.target.value, body: "" };
 
-      this.setState({ todo: todo });
-      console.log(this.state);
+      this.setState(todo);
+
+      // console.log(this.state);
     }
   }, {
-    key: "handleSubmit",
+    key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
       // console.log('this state todo:', this.state.todo);
 
-      this.props.receiveTodo(this.state.todo);
+      this.props.receiveTodo(this.state);
       console.log(this.props);
       //resets form
-      this.setState({ todo: "" });
+      this.setState({ id: "", title: "", body: "" });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
+      console.log(this.state);
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "form",
+          'form',
           null,
           _react2.default.createElement(
-            "label",
+            'label',
             null,
-            "Title",
-            _react2.default.createElement("input", {
-              className: "form-title",
-              type: "text",
-              onChange: this.updateTodo
+            'Title',
+            _react2.default.createElement('input', {
+              className: 'form-title',
+              type: 'text',
+              onChange: this.updateTodo,
+              value: this.state.title
             })
           ),
           _react2.default.createElement(
-            "button",
+            'button',
             { onClick: this.handleSubmit },
-            "Add Todo!"
+            'Add Todo!'
           )
         )
       );
@@ -24599,6 +24607,21 @@ function isIterateeCall(value, index, object) {
 
 module.exports = isIterateeCall;
 
+
+/***/ }),
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function uniqueId() {
+  return new Date().getTime();
+}
+exports.default = uniqueId;
 
 /***/ })
 /******/ ]);
